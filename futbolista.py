@@ -2,16 +2,15 @@ from deportista import Deportista
 from persona import Persona
 
 class Futbolista(Deportista,Persona):
-    listaFutbolista = []
+    _listaFutbolista = []
 
     def __init__(self,nombre,edad,altura,sexo,anosPracticando,golesMarcados,tarjetasRojas,piernaHabil):
-        Persona.super(nombre,edad,altura,sexo)
-        Deportista.super(anosPracticando)
-        self._deporte = "Futbol"
+        Persona.__init__(self,nombre,edad,altura,sexo)
+        Deportista.__init__(self,anosPracticando)
         self._golesMarcados = golesMarcados
         self._tarjetasRojas = tarjetasRojas
         self._pernaHabil = piernaHabil
-        Futbolista.listaFutbolista.add(self)
+        Futbolista._listaFutbolista.append(self)
 
     def getGolesMarcados(self):
         return self._golesMarcados
@@ -23,5 +22,5 @@ class Futbolista(Deportista,Persona):
         return self._pernaHabil
 
     def __str__(self):
-        return "Mi nombre es "+ Persona.nombre + " + soy profesional en el deporte " + Deportista.deporte + " Tengo "+Persona.edad+" años de edad y llevo " + Deportista.añosParticipando + " años en el deporte"
+        return f"Mi nombre es {super().getNombre()} soy profesional en el deporte {super().getDeporte()} Tengo {super().getEdad()} años de edad y llevo {super().getAñosPracticando()} años en el deporte"
 
